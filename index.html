@@ -277,29 +277,125 @@ footer{background:var(--ink);border-top:1px solid var(--b1);padding:80px 70px 36
 @media(max-width:960px){
   #nav{padding:18px 28px}#nav.s{padding:13px 28px}
   .nlinks,.nbook{display:none}.ham{display:flex}
-  .W{padding:0 28px}footer{padding:60px 28px 30px}
-  section{padding:90px 0}
-  .hcont{padding:0 28px 56px;grid-template-columns:1fr}
-  .hright{flex-direction:row;align-items:flex-start;flex-wrap:wrap}
-  .atxt{padding:48px 28px}
-  .astats{grid-template-columns:1fr}
-  .ggrid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
-  .gi{grid-column:span 1 !important;grid-row:span 1 !important;height:230px}
-  .big{grid-template-columns:1fr;gap:52px}
+  .W{padding:0 22px}footer{padding:60px 22px 30px}
+  section{padding:80px 0}
+  .hcont{padding:0 22px 52px;grid-template-columns:1fr}
+  .hright{flex-direction:row;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-top:20px}
+  .hcta1{padding:13px 28px;font-size:.65rem}
+  .htag{font-size:.62rem;letter-spacing:.35em}
+  .atxt{padding:44px 22px}
+  .astats{grid-template-columns:repeat(3,1fr)}
+  .astat{padding:28px 16px}
+  .anum{font-size:2.4rem}
+  .big{grid-template-columns:1fr;gap:48px}
   .bphoto{display:none}
-  .locg{grid-template-columns:1fr;gap:52px}
-  .fg-grid{grid-template-columns:1fr;gap:38px}
-  .fbot{flex-direction:column;gap:12px;text-align:center}
+  .locg{grid-template-columns:1fr;gap:48px}
+  .fg-grid{grid-template-columns:1fr;gap:34px}
+  .fbot{flex-direction:column;gap:10px;text-align:center}
   .frow{grid-template-columns:1fr}
-  .mtabs{flex-wrap:wrap;border:none;gap:1px}
-  .tab{border:1px solid var(--b1);flex:1 0 44%}
+  .mtabs{flex-wrap:wrap;border:none;gap:2px}
+  .tab{border:1px solid var(--b1);flex:1 0 44%;padding:11px 16px}
+  /* Gallery horizontal scroll on tablet */
+  #gallery{padding:80px 0 0}
+  .ggrid{
+    display:flex;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    gap:4px;
+    padding-bottom:0;
+    scrollbar-width:none;
+  }
+  .ggrid::-webkit-scrollbar{display:none}
+  .gi{
+    flex:0 0 72vw;
+    height:420px;
+    grid-column:unset !important;
+    grid-row:unset !important;
+    scroll-snap-align:start;
+    border-radius:0;
+  }
+  .gi:first-child{flex:0 0 80vw}
+  .gallery-scroll-hint{display:flex}
 }
+
+/* ── GALLERY SCROLL HINT ── */
+.gallery-scroll-hint{
+  display:none;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:16px 0 32px;
+  font-size:.62rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.gallery-scroll-hint::before,.gallery-scroll-hint::after{
+  content:'';width:28px;height:1px;background:var(--b2);
+}
+.scroll-dots{
+  display:none;
+  gap:6px;
+  justify-content:center;
+  padding:20px 0 36px;
+}
+.scroll-dots.show{display:flex}
+.sdot{
+  width:18px;height:2px;background:var(--b2);
+  transition:background .3s,width .3s;
+}
+.sdot.active{background:var(--gold);width:28px}
+
 @media(max-width:600px){
-  .htitle{font-size:clamp(3.4rem,13vw,5rem)}
-  .ggrid{grid-template-columns:1fr}
-  .gi{height:210px}
-  .steps{flex-wrap:wrap}
-  .si{flex:1 0 48%;margin-bottom:-1px}
+  .htitle{font-size:clamp(3.2rem,12vw,4.5rem)}
+  .htag{display:none}
+  section{padding:70px 0}
+  .W{padding:0 18px}
+  .apic{height:320px}
+  .atxt{padding:36px 18px}
+  .astats{grid-template-columns:repeat(3,1fr)}
+  .astat{padding:22px 10px}
+  .anum{font-size:2rem}
+  .albl{font-size:.55rem;letter-spacing:.15em}
+  /* Gallery 2-col masonry on small mobile */
+  #gallery{padding:70px 0 0}
+  .ggrid{
+    display:grid !important;
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:auto;
+    gap:3px;
+    overflow:visible;
+    padding-bottom:0;
+  }
+  .gi{
+    flex:unset;
+    height:180px;
+    scroll-snap-align:unset;
+  }
+  .gi:nth-child(1){grid-column:span 2;height:240px}
+  .gi:nth-child(4){grid-column:span 2;height:200px}
+  .gallery-scroll-hint{display:none !important}
+  .scroll-dots{display:none !important}
+  /* Menu */
+  .tab{flex:1 0 48%;font-size:.6rem;padding:10px 8px;letter-spacing:.12em}
+  .miname{font-size:1.2rem}
+  .miprice{font-size:1.1rem}
+  .mi{gap:16px;padding:20px 0}
+  /* Booking */
+  .steps{gap:2px}
+  .si{font-size:.58rem;padding:10px 6px;letter-spacing:.1em}
+  /* Footer */
+  footer{padding:50px 18px 28px}
+  .flogo{font-size:1.9rem}
+  .fg-grid{gap:28px;padding-bottom:40px}
+  /* Map */
+  .mapw iframe{height:280px}
+  /* Hero */
+  .hcont{padding:0 18px 44px}
+  .hcta1{padding:12px 22px;font-size:.62rem}
+  .hcta2{font-size:.62rem}
+  .hey span{font-size:.58rem;letter-spacing:.3em}
 }
 </style>
 </head>
@@ -487,9 +583,16 @@ footer{background:var(--ink);border-top:1px solid var(--b1);padding:80px 70px 36
       <div class="giov"><span class="gicap">Sweet Finales</span></div>
     </div>
   </div>
+  <div class="gallery-scroll-hint">Swipe to explore</div>
+  <div class="scroll-dots" id="galleryDots">
+    <div class="sdot active"></div>
+    <div class="sdot"></div>
+    <div class="sdot"></div>
+    <div class="sdot"></div>
+    <div class="sdot"></div>
+    <div class="sdot"></div>
+  </div>
 </section>
-
-<!-- ══════════════════ BOOKING ══════════════════ -->
 <section id="booking">
   <div class="W">
     <div class="big">
@@ -799,7 +902,22 @@ function confirm_b(pid){
      <span style="font-size:.72rem;color:var(--muted)">Payment ID: ${pid}</span>`;
 }
 
-/* ── TOAST ── */
+/* ── GALLERY SCROLL DOTS ── */
+(()=>{
+  const grid=document.querySelector('.ggrid');
+  const dots=document.querySelectorAll('.sdot');
+  const dotsWrap=document.getElementById('galleryDots');
+  if(!grid||!dots.length) return;
+  const show=()=>{ dotsWrap.classList.toggle('show',window.innerWidth<=960&&window.innerWidth>600); };
+  show(); window.addEventListener('resize',show);
+  grid.addEventListener('scroll',()=>{
+    const items=grid.querySelectorAll('.gi');
+    let active=0;
+    items.forEach((item,i)=>{ const r=item.getBoundingClientRect(),g=grid.getBoundingClientRect(); if(r.left<=g.left+g.width/2) active=i; });
+    dots.forEach((d,i)=>d.classList.toggle('active',i===active));
+  });
+})();
+
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200);}
 </script>
 </body>
