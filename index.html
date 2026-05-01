@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet"/>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -44,9 +46,33 @@ body{background:var(--ink);color:var(--txt);font-family:'Outfit',sans-serif;font
 .ham{display:none;flex-direction:column;gap:5px;cursor:none;background:none;border:none;padding:4px}
 .ham span{width:22px;height:1px;background:var(--gold);display:block;transition:.3s}
 
+/* ── FLATPICKR DARK OVERRIDE ── */
+.flatpickr-calendar{background:var(--char)!important;border:1px solid var(--b2)!important;border-radius:0!important;box-shadow:0 20px 60px rgba(0,0,0,.7)!important;font-family:'Outfit',sans-serif!important}
+.flatpickr-month,.flatpickr-weekdays,.flatpickr-day,.flatpickr-months .flatpickr-month{background:var(--char)!important;color:var(--txt)!important}
+.flatpickr-current-month{font-family:'Cormorant Garamond',serif!important;font-size:1.1rem!important;color:var(--txt)!important}
+.flatpickr-current-month select,.flatpickr-current-month input.cur-year{color:var(--txt)!important;background:transparent!important}
+.flatpickr-weekday{color:var(--gold)!important;font-size:.65rem!important;letter-spacing:.12em!important}
+.flatpickr-day{color:var(--muted)!important;border-radius:0!important;border:none!important}
+.flatpickr-day:hover{background:rgba(196,154,60,.12)!important;color:var(--txt)!important}
+.flatpickr-day.selected,.flatpickr-day.startRange,.flatpickr-day.endRange{background:var(--gold)!important;color:var(--ink)!important;font-weight:500!important}
+.flatpickr-day.today{border-bottom:1px solid var(--gold)!important;color:var(--gold)!important}
+.flatpickr-day.today.selected{border-bottom:none!important;color:var(--ink)!important}
+.flatpickr-day.flatpickr-disabled,.flatpickr-day.flatpickr-disabled:hover{color:rgba(138,128,112,.3)!important}
+.flatpickr-months .flatpickr-prev-month,.flatpickr-months .flatpickr-next-month{color:var(--gold)!important;fill:var(--gold)!important}
+.flatpickr-months .flatpickr-prev-month:hover svg,.flatpickr-months .flatpickr-next-month:hover svg{fill:var(--gold-lt)!important}
+.numInputWrapper:hover{background:transparent!important}
+.numInputWrapper input{color:var(--txt)!important}
+.numInputWrapper span{border-color:var(--b1)!important}
+.numInputWrapper span svg{fill:var(--muted)!important}
+
+/* ── DATE INPUT CUSTOM ── */
+.date-pick-wrap{position:relative}
+.date-pick-wrap input{padding-right:44px!important}
+.date-pick-icon{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--gold);font-size:1rem;pointer-events:none}
+
 /* ── HERO ── */
 #hero{position:relative;height:100vh;min-height:680px;display:flex;align-items:flex-end;overflow:hidden}
-.hbg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&q=85&auto=format&fit=crop') center/cover no-repeat;transform:scale(1.06);transition:transform 9s ease-out}
+.hbg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=1920&q=90&auto=format&fit=crop') center/cover no-repeat;transform:scale(1.06);transition:transform 9s ease-out}
 .hbg.rdy{transform:scale(1)}
 .hov{position:absolute;inset:0;background:linear-gradient(0deg,rgba(6,5,4,1) 0%,rgba(6,5,4,.6) 38%,rgba(6,5,4,.18) 68%,rgba(6,5,4,.52) 100%)}
 .hcont{position:relative;z-index:2;width:100%;padding:0 70px 88px;display:grid;grid-template-columns:1fr auto;align-items:flex-end;gap:48px}
@@ -340,7 +366,7 @@ footer{background:var(--ink);border-top:1px solid var(--b1);padding:80px 70px 36
 <section id="about">
   <div class="ag sr">
     <div class="apic">
-      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=85&auto=format&fit=crop" alt="La'Fika Fine Dining" loading="lazy"/>
+      <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=1200&q=90&auto=format&fit=crop" alt="La'Fika Fine Dining" loading="lazy"/>
       <div class="apic-ov"></div>
     </div>
     <div class="atxt">
@@ -437,27 +463,27 @@ footer{background:var(--ink);border-top:1px solid var(--b1);padding:80px 70px 36
   </div>
   <div class="ggrid sr">
     <div class="gi">
-      <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=900&q=85&auto=format&fit=crop" alt="Main Dining Hall" loading="lazy"/>
+      <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=900&q=90&auto=format&fit=crop" alt="Main Dining Hall" loading="lazy"/>
       <div class="giov"><span class="gicap">The Main Hall</span></div>
     </div>
     <div class="gi">
-      <img src="https://images.unsplash.com/photo-1544025162-d76538f3f4fa?w=700&q=85&auto=format&fit=crop" alt="Signature Dish" loading="lazy"/>
+      <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=700&q=90&auto=format&fit=crop" alt="Signature Dish" loading="lazy"/>
       <div class="giov"><span class="gicap">Signature Plates</span></div>
     </div>
     <div class="gi">
-      <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=600&q=85&auto=format&fit=crop" alt="Bar" loading="lazy"/>
+      <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=600&q=90&auto=format&fit=crop" alt="Bar" loading="lazy"/>
       <div class="giov"><span class="gicap">The Bar</span></div>
     </div>
     <div class="gi">
-      <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=700&q=85&auto=format&fit=crop" alt="Culinary Art" loading="lazy"/>
+      <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=700&q=90&auto=format&fit=crop" alt="Culinary Art" loading="lazy"/>
       <div class="giov"><span class="gicap">Culinary Art</span></div>
     </div>
     <div class="gi">
-      <img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=800&q=85&auto=format&fit=crop" alt="Private Dining" loading="lazy"/>
+      <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=800&q=90&auto=format&fit=crop" alt="Private Dining" loading="lazy"/>
       <div class="giov"><span class="gicap">Private Dining</span></div>
     </div>
     <div class="gi">
-      <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=700&q=85&auto=format&fit=crop" alt="Desserts" loading="lazy"/>
+      <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=700&q=90&auto=format&fit=crop" alt="Desserts" loading="lazy"/>
       <div class="giov"><span class="gicap">Sweet Finales</span></div>
     </div>
   </div>
@@ -477,7 +503,7 @@ footer{background:var(--ink);border-top:1px solid var(--b1);padding:80px 70px 36
         <div class="bf"><div class="bfdot"></div><span>Instant confirmation SMS after payment</span></div>
         <div class="bf"><div class="bfdot"></div><span>Private dining rooms available for 8+ guests</span></div>
         <div class="bphoto">
-          <img src="https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?w=800&q=85&auto=format&fit=crop" alt="Restaurant Ambience" loading="lazy"/>
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=90&auto=format&fit=crop" alt="Restaurant Ambience" loading="lazy"/>
           <div class="bptag">Open Daily · 12 Noon — 12 Midnight</div>
         </div>
       </div>
@@ -491,7 +517,13 @@ footer{background:var(--ink);border-top:1px solid var(--b1);padding:80px 70px 36
         <div id="bform">
           <!-- STEP 1 -->
           <div class="bs on" id="bs1">
-            <div class="fg"><label>Date of Visit</label><input type="date" id="fDate"/></div>
+            <div class="fg">
+              <label>Date of Visit</label>
+              <div class="date-pick-wrap">
+                <input type="text" id="fDate" placeholder="Select date — calendar will open" readonly/>
+                <span class="date-pick-icon">📅</span>
+              </div>
+            </div>
             <div class="frow">
               <div class="fg"><label>Time</label>
                 <select id="fTime">
@@ -530,6 +562,10 @@ footer{background:var(--ink);border-top:1px solid var(--b1);padding:80px 70px 36
           <!-- STEP 3 -->
           <div class="bs" id="bs3">
             <div class="bsum" id="bsumEl"></div>
+            <div style="background:rgba(196,154,60,.07);border:1px solid rgba(196,154,60,.25);border-left:3px solid var(--gold);padding:14px 18px;margin-bottom:16px;display:flex;gap:12px;align-items:flex-start">
+              <span style="font-size:1rem;flex-shrink:0;margin-top:1px">💡</span>
+              <p style="font-size:.78rem;color:var(--muted);line-height:1.7"><strong style="color:var(--gold);font-weight:500">Note:</strong> Yeh ₹500 advance aapke final bill mein se minus ho jayenge — aapko sirf remaining amount dena hoga restaurant mein. Koi extra charge nahi.</p>
+            </div>
             <button class="bn" onclick="pay()">🔒 &nbsp;Pay ₹500 Advance via Razorpay</button>
             <button class="bb" onclick="gst(2)">← Edit Details</button>
           </div>
@@ -653,7 +689,7 @@ document.querySelectorAll('a,button,select,input,.mi,.gi,.astat,.sc').forEach(el
 window.addEventListener('load',()=>{
   const bg=document.getElementById('hbg');
   const img=new Image();
-  img.src='https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&q=85&auto=format&fit=crop';
+  img.src='https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=1920&q=90&auto=format&fit=crop';
   img.onload=()=>{bg.style.backgroundImage=`url('${img.src}')`;setTimeout(()=>bg.classList.add('rdy'),80)};
 });
 
@@ -683,7 +719,13 @@ function mt(e,id){
 }
 
 /* ── DATE MIN ── */
-document.getElementById('fDate').min=new Date().toISOString().split('T')[0];
+flatpickr('#fDate',{
+  minDate:'today',
+  dateFormat:'D, d M Y',
+  disableMobile:false,
+  locale:{firstDayOfWeek:1},
+  onChange:function(sel,dateStr){bd._rawDate=sel[0]?sel[0].toISOString().split('T')[0]:''}
+});
 
 /* ── BOOKING ── */
 let bd={};
@@ -692,7 +734,8 @@ function gst(n){
     if(!document.getElementById('fDate').value) return toast('Please select a date');
     if(!document.getElementById('fTime').value) return toast('Please select a time');
     if(!document.getElementById('fGuests').value) return toast('Please select number of guests');
-    bd.date=document.getElementById('fDate').value;
+    bd.date=bd._rawDate||document.getElementById('fDate').value;
+    bd.dateDisplay=document.getElementById('fDate').value;
     bd.time=document.getElementById('fTime').value;
     bd.guests=document.getElementById('fGuests').value;
     bd.seat=document.getElementById('fSeat').value||'No preference';
@@ -713,7 +756,7 @@ function gst(n){
 }
 function buildSum(){
   const d=bd;
-  const df=new Date(d.date).toLocaleDateString('en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  const df=d.dateDisplay||d.date;
   document.getElementById('bsumEl').innerHTML=`
     <div class="bsum-t">Booking Summary</div>
     <div class="brow"><span>Guest</span><span>${d.name}</span></div>
@@ -724,7 +767,7 @@ function buildSum(){
     <div class="brow"><span>Seating</span><span>${d.seat}</span></div>
     ${d.occ&&d.occ!=='None'?`<div class="brow"><span>Occasion</span><span>${d.occ}</span></div>`:''}
     ${d.req?`<div class="brow"><span>Requests</span><span>${d.req}</span></div>`:''}
-    <div class="btotal"><span>Advance</span><strong>₹500</strong></div>`;
+    <div class="btotal"><span>Advance (adjusted in bill)</span><strong>₹500</strong></div>`;
 }
 
 /* ── PAYMENT ── */
